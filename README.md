@@ -9,7 +9,7 @@
 -   thats it you can add this python file on to your server and run it
 -   free python server [link](https://www.pythonanywhere.com/)
 
-## Commons errors
+## Common errors
 
 -   If you get an error like this
     ```
