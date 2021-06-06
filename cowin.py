@@ -34,9 +34,12 @@ fulldate = datetime.datetime.now(timeZ_Kl).strftime("%d-%m-%Y")
 def getrequest(url):  # to fetch the data from vacine url
     try:
         res = requests.get(url=url)
-        return res.json()
+        if res.status_code != 200:
+            return False
+        else:
+            return res.json()
     except:
-        return res.json().error
+        return False
 
 # send mail if it finds any new vacine center at that pincode
 
@@ -74,13 +77,14 @@ temp = {}  # temp variale to store and comapre the request from cowin api
 
 while True:
     getdata = getrequest(cowin_url)
-    if temp == {} and getdata["sessions"] != [] and checkAgeandDose(getdata["sessions"], age, dose):
-        temp = getdata
-        sendemail()
-    else:
-        if temp != getdata and getdata["sessions"] != [] and checkAgeandDose(getdata["sessions"], age, dose):
+    if getdata != False:
+        if temp == {} and getdata["sessions"] != [] and checkAgeandDose(getdata["sessions"], age, dose):
             temp = getdata
             sendemail()
+        else:
+            if temp != getdata and getdata["sessions"] != [] and checkAgeandDose(getdata["sessions"], age, dose):
+                temp = getdata
+                sendemail()
     print("updated!. again check in 15 min")
 
     time.sleep(900)  # 900 sec means 15 minutes
