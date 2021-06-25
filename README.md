@@ -21,7 +21,7 @@
     -   Then you have to use a indian proxy server
     -   you can get a free proxy [link](https://www.proxyhub.me/en/in-https-proxy-list.html)
     -   add it to line 35
-    ```
+    ```python
     proxies ={
       "https": "proxylink:port",
       "http": "proxylink:port"
