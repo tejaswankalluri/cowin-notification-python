@@ -46,7 +46,7 @@ def getrequest(url):  # to fetch the data from vacine url
 
 def sendemail():
     # use url from basin from if you want to create account https://usebasin.com/
-    url = 'https://usebasin.com/f/5ee44609daa8'
+    url = ''
     data = 'new vacine available at pincode: ' + \
         pincode + ' and Date ' + \
         str(fulldate) + ' ' + \
